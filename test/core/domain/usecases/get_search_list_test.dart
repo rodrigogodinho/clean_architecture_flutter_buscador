@@ -1,4 +1,5 @@
 import 'package:clean_architecture_flutter_buscador/core/domain/entities/search_item.dart';
+import 'package:clean_architecture_flutter_buscador/core/domain/errors/errors.dart';
 import 'package:clean_architecture_flutter_buscador/core/domain/repositories/search_repository.dart';
 import 'package:clean_architecture_flutter_buscador/core/domain/usecases/get_search_list.dart';
 import 'package:dartz/dartz.dart';
@@ -31,13 +32,23 @@ void main() {
   });
 
   test('Deve retornar uma exception cuando string é inválida', () async {
-    const String? searchText = null;
+    String? searchText;
 
     when(() => repository.getSearchList(searchText))
         .thenAnswer((invocation) async => const Right(<SearchItem>[]));
 
     var result = await usecase(searchText);
     expect(result, isA<Left>());
-    expect(result.fold(id, id), isA<Exception>());
+    expect(result.fold(id, id), isA<InvalidTextError>());
+
+    searchText = "";
+    result = await usecase(searchText);
+    expect(result, isA<Left>());
+    expect(result.fold(id, id), isA<InvalidEmptyTextError>());
+
+    searchText = "     ";
+    result = await usecase(searchText);
+    expect(result, isA<Left>());
+    expect(result.fold(id, id), isA<InvalidEmptyTextError>());
   });
 }
