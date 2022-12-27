@@ -25,10 +25,10 @@ class SearchItemDTO {
 
   factory SearchItemDTO.fromMap(Map<String, dynamic> map) {
     return SearchItemDTO(
-      id: map['id'] as String,
-      name: map['name'] as String,
-      description: map['description'] as String,
-      score: map['score'] as double,
+      id: map['id'].toString(),
+      name: (map['name'] ?? "") as String,
+      description: (map['description'] ?? "") as String,
+      score: (map['score'] ?? 0.0) as double,
     );
   }
 
