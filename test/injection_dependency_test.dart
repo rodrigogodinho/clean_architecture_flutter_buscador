@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:clean_architecture_flutter_buscador/core/domain/entities/search_item.dart';
 import 'package:clean_architecture_flutter_buscador/core/domain/usecases/search_by_text.dart';
 import 'package:clean_architecture_flutter_buscador/core/utils/injection_dependencies.dart';
+import 'package:clean_architecture_flutter_buscador/feature/search/bloc/search_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
@@ -24,9 +25,12 @@ void main() {
     registerFallbackValue(FakeUri());
   });
 
-  test('Deve retornar un usecase de SearchByText', () {
+  test('Deve retornar um usecase de SearchByText e um SearchBloc', () {
     final useCase = GetIt.I.get<SearchByText>();
+    final bloc = GetIt.I.get<SearchBloc>();
+
     expect(useCase, isA<SearchByText>());
+    expect(bloc, isA<SearchBloc>());
   });
 
   test('Deve retornar uma lista de entidades', () async {

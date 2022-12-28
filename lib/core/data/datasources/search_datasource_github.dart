@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:clean_architecture_flutter_buscador/core/data/datasources/search_datasource.dart';
 import 'package:clean_architecture_flutter_buscador/core/data/dto/search_item_dto.dart';
+import 'package:flutter/foundation.dart';
 
 import 'package:http/http.dart';
 
@@ -40,7 +41,10 @@ class SearchDatasourceGithub implements SearchDataSource {
             'Pode ser um erro de conexão, erro no servidor ou alguém esqueceu de pagar a internet.');
       }
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
+    return null;
   }
 }

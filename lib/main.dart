@@ -1,13 +1,6 @@
-import 'package:clean_architecture_flutter_buscador/core/data/datasources/search_datasource.dart';
-import 'package:clean_architecture_flutter_buscador/core/data/datasources/search_datasource_github.dart';
-import 'package:clean_architecture_flutter_buscador/core/data/mappers/search_item_mapper.dart';
-import 'package:clean_architecture_flutter_buscador/core/data/mappers/search_item_mapper_github.dart';
-import 'package:clean_architecture_flutter_buscador/core/data/repositories/search_repository_impl.dart';
-import 'package:clean_architecture_flutter_buscador/core/domain/repositories/search_repository.dart';
-import 'package:clean_architecture_flutter_buscador/core/domain/usecases/search_by_text.dart';
 import 'package:clean_architecture_flutter_buscador/core/utils/injection_dependencies.dart';
+import 'package:clean_architecture_flutter_buscador/feature/search/search_page.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
 
 void main() {
@@ -26,19 +19,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const SearchPage(),
     );
   }
 }

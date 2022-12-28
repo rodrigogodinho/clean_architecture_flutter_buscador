@@ -6,6 +6,7 @@ import 'package:clean_architecture_flutter_buscador/core/data/mappers/search_ite
 import 'package:clean_architecture_flutter_buscador/core/data/repositories/search_repository_impl.dart';
 import 'package:clean_architecture_flutter_buscador/core/domain/repositories/search_repository.dart';
 import 'package:clean_architecture_flutter_buscador/core/domain/usecases/search_by_text.dart';
+import 'package:clean_architecture_flutter_buscador/feature/search/bloc/search_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
 
@@ -23,5 +24,6 @@ class InjectionDependencies {
         SearchRepositoyImpl(getIt(), getIt()));
     getIt
         .registerSingleton<SearchByText>(SearchByTextImpl(repository: getIt()));
+    getIt.registerSingleton<SearchBloc>(SearchBloc(getIt()));
   }
 }
