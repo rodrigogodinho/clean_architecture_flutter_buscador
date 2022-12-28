@@ -1,7 +1,7 @@
 import 'package:clean_architecture_flutter_buscador/core/domain/entities/search_item.dart';
 import 'package:clean_architecture_flutter_buscador/core/domain/errors/errors.dart';
 import 'package:clean_architecture_flutter_buscador/core/domain/repositories/search_repository.dart';
-import 'package:clean_architecture_flutter_buscador/core/domain/usecases/get_search_list.dart';
+import 'package:clean_architecture_flutter_buscador/core/domain/usecases/search_by_text.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -10,11 +10,11 @@ class RepositoryMock extends Mock implements SearchRepository {}
 
 void main() {
   late SearchRepository repository;
-  late GetSearchList usecase;
+  late SearchByText usecase;
 
   setUpAll(() {
     repository = RepositoryMock();
-    usecase = GetSearchListImpl(repository: repository);
+    usecase = SearchByTextImpl(repository: repository);
   });
 
   test('Deve retornar uma lista de resultados', () async {

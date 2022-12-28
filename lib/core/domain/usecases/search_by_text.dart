@@ -5,14 +5,14 @@ import 'package:dartz/dartz.dart';
 import 'package:clean_architecture_flutter_buscador/core/domain/entities/search_item.dart';
 import 'package:clean_architecture_flutter_buscador/core/domain/repositories/search_repository.dart';
 
-abstract class GetSearchList {
+abstract class SearchByText {
   Future<Either<FailureSearch, List<SearchItem>?>> call(String? searchText);
 }
 
-class GetSearchListImpl implements GetSearchList {
+class SearchByTextImpl implements SearchByText {
   final SearchRepository repository;
 
-  GetSearchListImpl({
+  SearchByTextImpl({
     required this.repository,
   });
 

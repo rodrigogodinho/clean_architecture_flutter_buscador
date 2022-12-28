@@ -1,8 +1,22 @@
+import 'package:clean_architecture_flutter_buscador/core/data/datasources/search_datasource.dart';
+import 'package:clean_architecture_flutter_buscador/core/data/datasources/search_datasource_github.dart';
+import 'package:clean_architecture_flutter_buscador/core/data/mappers/search_item_mapper.dart';
+import 'package:clean_architecture_flutter_buscador/core/data/mappers/search_item_mapper_github.dart';
+import 'package:clean_architecture_flutter_buscador/core/data/repositories/search_repository_impl.dart';
+import 'package:clean_architecture_flutter_buscador/core/domain/repositories/search_repository.dart';
+import 'package:clean_architecture_flutter_buscador/core/domain/usecases/search_by_text.dart';
+import 'package:clean_architecture_flutter_buscador/core/utils/injection_dependencies.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:http/http.dart';
 
 void main() {
+  final injectionDependencies = InjectionDependencies(client: Client());
+  injectionDependencies();
   runApp(const MyApp());
 }
+
+// Como o GetIt não permite modificar um
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
