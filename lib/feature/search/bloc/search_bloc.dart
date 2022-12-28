@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:clean_architecture_flutter_buscador/core/domain/entities/search_item.dart';
 import 'package:clean_architecture_flutter_buscador/core/domain/errors/errors.dart';
 import 'package:clean_architecture_flutter_buscador/core/domain/usecases/search_by_text.dart';
+import 'package:rxdart/rxdart.dart';
 
 part 'search_event.dart';
 part 'search_state.dart';
@@ -18,6 +19,10 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       final result = await usecase(event.searchText);
       emit(result.fold((l) => SearchErrorState(l),
           (r) => SearchSuccessState(r ?? <SearchItem>[])));
-    });
+    }, transformer: debounce(const Duration(milliseconds: 800)));
+  }
+
+  EventTransformer<SearchEvent> debounce<SearchEvent>(Duration duration) {
+    return (events, mapper) => events.debounceTime(duration).flatMap(mapper);
   }
 }

@@ -9,3 +9,4 @@ Projeto em Flutter para estudar Clean Architecture com Dart/Flutter.
 - Testes unitarios utilizando [Mocktail](https://pub.dev/packages/mocktail) para criar "mocks" de clases.
 - Uso do [GetIt](https://pub.dev/packages/get_it) para injeção de dependencias.
 - Gestão de estados com [Bloc](https://pub.dev/packages/bloc).
+- Debounce com [RxDart](https://pub.dev/packages/rxdart) para evitar requisições desnecesarias a API.
