@@ -1,16 +1,11 @@
 # clean_architecture_flutter_buscador
 
-A new Flutter project.
+Projeto em Flutter para estudar Clean Architecture com Dart/Flutter.
 
-## Getting Started
+## Conceitos estudados nesse projeto:
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Clean Architecture com Dart/Flutter.
+- Uso do [Dartz](https://pub.dev/packages/dartz) para implementar o uso de Either nos casos de uso.
+- Testes unitarios utilizando [Mocktail](https://pub.dev/packages/mocktail) para criar "mocks" de clases.
+- Uso do [GetIt](https://pub.dev/packages/get_it) para injeção de dependencias.
+- Gestão de estados com [Bloc](https://pub.dev/packages/bloc).
