@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 // ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
 
@@ -16,9 +17,17 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   SearchBloc(this.usecase) : super(SearchInitialState()) {
     on<SearchByTextEvent>((event, emit) async {
       emit(SearchLoadingState());
+
       final result = await usecase(event.searchText);
-      emit(result.fold((l) => SearchErrorState(l),
-          (r) => SearchSuccessState(r ?? <SearchItem>[])));
+
+      if (result is Right) {
+        emit(SearchSuccessState((result | null) ?? <SearchItem>[]));
+      } else if (result.fold((l) => l, (r) => null) is InvalidEmptyTextError) {
+        emit(SearchInitialState());
+      } else {
+        final error = result.fold((l) => l, (r) => null);
+        emit(SearchErrorState(error!));
+      }
     }, transformer: debounce(const Duration(milliseconds: 800)));
   }
 

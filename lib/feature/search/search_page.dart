@@ -23,7 +23,7 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Github Search'),
+        title: const Text('Github Repositories Search'),
       ),
       body: Column(
         children: [
@@ -39,9 +39,8 @@ class _SearchPageState extends State<SearchPage> {
                 stream: bloc.stream,
                 builder: (context, snapshot) {
                   final state = bloc.state;
-                  if (state is SearchInitialState ||
-                      (state is SearchErrorState &&
-                          state.error is InvalidEmptyTextError)) {
+
+                  if (state is SearchInitialState) {
                     return const Center(
                       child: Text('Digite um texto'),
                     );
@@ -65,9 +64,14 @@ class _SearchPageState extends State<SearchPage> {
                     itemCount: list.length,
                     itemBuilder: (_, index) {
                       final item = list[index];
-                      return ListTile(
-                        title: Text(item.name),
-                        subtitle: Text(item.description),
+                      return Padding(
+                        padding: const EdgeInsets.only(left: 4, right: 4),
+                        child: Card(
+                          child: ListTile(
+                            title: Text(item.name),
+                            subtitle: Text(item.description),
+                          ),
+                        ),
                       );
                     },
                   );
