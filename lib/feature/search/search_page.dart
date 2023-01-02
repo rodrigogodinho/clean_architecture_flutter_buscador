@@ -1,5 +1,7 @@
-import 'package:clean_architecture_flutter_buscador/core/domain/errors/errors.dart';
-import 'package:clean_architecture_flutter_buscador/feature/search/bloc/search_bloc.dart';
+import 'package:clean_architecture_flutter_buscador/feature/search/bloc/typeview_bloc.dart';
+import 'package:clean_architecture_flutter_buscador/feature/search/components_widgets/iconchangesearchview.dart';
+import 'package:clean_architecture_flutter_buscador/feature/search/components_widgets/searchresultview.dart';
+import 'package:clean_architecture_flutter_buscador/feature/search/search_bloc/search_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -11,12 +13,21 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  SearchBloc bloc = GetIt.I.get<SearchBloc>();
+  late SearchBloc bloc;
+  late TypeViewBloc typeViewBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    bloc = GetIt.I.get<SearchBloc>();
+    typeViewBloc = GetIt.I.get<TypeViewBloc>();
+  }
 
   @override
   void dispose() {
-    super.dispose();
     bloc.close();
+    typeViewBloc.close();
+    super.dispose();
   }
 
   @override
@@ -24,6 +35,9 @@ class _SearchPageState extends State<SearchPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Github Repositories Search'),
+        actions: [
+          IconChangeSearchView(typeViewBloc: typeViewBloc),
+        ],
       ),
       body: Column(
         children: [
@@ -35,47 +49,7 @@ class _SearchPageState extends State<SearchPage> {
             ),
           ),
           Expanded(
-            child: StreamBuilder(
-                stream: bloc.stream,
-                builder: (context, snapshot) {
-                  final state = bloc.state;
-
-                  if (state is SearchInitialState) {
-                    return const Center(
-                      child: Text('Digite um texto'),
-                    );
-                  }
-
-                  if (state is SearchErrorState) {
-                    return const Center(
-                      child: Text('Houve um erro'),
-                    );
-                  }
-
-                  if (state is SearchLoadingState) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-
-                  final list = (state as SearchSuccessState).list;
-
-                  return ListView.builder(
-                    itemCount: list.length,
-                    itemBuilder: (_, index) {
-                      final item = list[index];
-                      return Padding(
-                        padding: const EdgeInsets.only(left: 4, right: 4),
-                        child: Card(
-                          child: ListTile(
-                            title: Text(item.name),
-                            subtitle: Text(item.description),
-                          ),
-                        ),
-                      );
-                    },
-                  );
-                }),
+            child: SearchResultView(bloc: bloc, typeViewBloc: typeViewBloc),
           )
         ],
       ),

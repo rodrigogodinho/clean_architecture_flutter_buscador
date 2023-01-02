@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:clean_architecture_flutter_buscador/core/domain/entities/search_item.dart';
 import 'package:clean_architecture_flutter_buscador/core/domain/errors/errors.dart';
 import 'package:clean_architecture_flutter_buscador/core/domain/usecases/search_by_text.dart';
-import 'package:clean_architecture_flutter_buscador/feature/search/bloc/search_bloc.dart';
+import 'package:clean_architecture_flutter_buscador/feature/search/search_bloc/search_bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';

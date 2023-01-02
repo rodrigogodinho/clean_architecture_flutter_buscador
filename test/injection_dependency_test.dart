@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:clean_architecture_flutter_buscador/core/domain/entities/search_item.dart';
 import 'package:clean_architecture_flutter_buscador/core/domain/usecases/search_by_text.dart';
 import 'package:clean_architecture_flutter_buscador/core/utils/injection_dependencies.dart';
-import 'package:clean_architecture_flutter_buscador/feature/search/bloc/search_bloc.dart';
+import 'package:clean_architecture_flutter_buscador/feature/search/search_bloc/search_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
