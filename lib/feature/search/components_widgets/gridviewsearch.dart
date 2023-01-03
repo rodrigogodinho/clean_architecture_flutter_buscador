@@ -14,16 +14,36 @@ class GridViewSearch extends StatelessWidget {
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: 1.5,
+        // childAspectRatio: 1.5,
       ),
       itemCount: list.length,
       itemBuilder: (_, index) {
         final item = list[index];
-        return GridTile(
-          child: Card(
-            child: ListTile(
-              title: Text(item.name),
-              subtitle: Text(item.description),
+        return Card(
+          child: GridTile(
+            header: GridTileBar(
+              backgroundColor: Colors.white,
+              title: Text(
+                item.name,
+                style: const TextStyle(
+                    color: Colors.black, fontWeight: FontWeight.bold),
+              ),
+            ),
+            footer: GridTileBar(
+              backgroundColor: Colors.white,
+              title: Text(
+                '${item.score} \u2B50',
+                style: const TextStyle(color: Colors.black),
+              ),
+            ),
+            child: GridTileBar(
+              backgroundColor: Colors.white,
+              title: Text(
+                item.description,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 5,
+                style: const TextStyle(color: Colors.black),
+              ),
             ),
           ),
         );

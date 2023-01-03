@@ -27,7 +27,7 @@ void main() {
         id: "1",
         name: "DTO",
         description: "Sou um data transfer object",
-        score: 5.0);
+        score: 5);
 
     when(() => dataSource.getSearchList(searchText))
         .thenAnswer((invocation) async => [dto1]);

@@ -20,7 +20,12 @@ class ListViewSearch extends StatelessWidget {
           child: Card(
             child: ListTile(
               title: Text(item.name),
-              subtitle: Text(item.description),
+              subtitle: Text(
+                item.description,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 6,
+              ),
+              trailing: Text('${item.score} \u2B50'),
             ),
           ),
         );

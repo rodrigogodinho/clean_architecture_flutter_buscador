@@ -5,7 +5,7 @@ class SearchItemDTO {
   final String id;
   final String name;
   final String description;
-  final double score;
+  final int score;
 
   SearchItemDTO({
     required this.id,
@@ -19,7 +19,7 @@ class SearchItemDTO {
       'id': id,
       'name': name,
       'description': description,
-      'score': score,
+      'stargazers_count': score,
     };
   }
 
@@ -28,7 +28,7 @@ class SearchItemDTO {
       id: map['id'].toString(),
       name: (map['name'] ?? "") as String,
       description: (map['description'] ?? "") as String,
-      score: (map['score'] ?? 0.0) as double,
+      score: (map['stargazers_count'] ?? 0) as int,
     );
   }
 

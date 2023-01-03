@@ -3,7 +3,7 @@ class SearchItem {
   final String id;
   final String name;
   final String description;
-  final double score;
+  final int score;
 
   SearchItem({
     required this.id,
